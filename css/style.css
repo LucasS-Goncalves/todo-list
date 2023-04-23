@@ -1,0 +1,283 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+:root{
+    --font: 'Tilt Neon', cursive;
+    --background_color: rgb(245, 245, 245);
+    --text_color: #000000;
+    --text_input_background: #ffffff;
+    --place_holder_color: #696969;
+    --add_input_background: #ececec;
+    --add_input_background_hover: #cecccc;
+    --box_shadow: #9c9393;
+    --border: #000000;
+    --button_hover: #cecdcd;
+    --item_color: linear-gradient(#dbdbdb, #ececec);
+    --item_strong_color: linear-gradient(#d6d6d6, #bbbbbb);
+    --label_icon: url("https://cdn-icons-png.flaticon.com/512/46/46181.png?w=740&t=st=1678305581~exp=1678306181~hmac=f4fe102ffc733a492708d90a6f38c3cfe44b915bd9c654c1b027955b26de0d20");
+}
+
+.dark_mode{
+    --background_color: #0f0f0f;
+    --text_color: #ffffff;
+    --text_input_background: #2c2c2c;
+    --place_holder_color: #e4e4e4;
+    --add_input_background: #141414;
+    --add_input_background_hover: #0a0a0a;
+    --box_shadow: #000000;
+    --border: #000000;
+    --button_hover: #141313;
+    --item_color: linear-gradient(#1f1f1f, #2e2e2e);
+    --item_strong_color: linear-gradient(#2b2b2b, #444444);
+    --label_icon: url("https://icons.iconarchive.com/icons/paomedia/small-n-flat/512/light-bulb-icon.png");
+}
+
+body{
+    background-color: var(--background_color);  
+}
+
+#btn{
+    display: none;
+}
+
+.change_theme{
+    cursor: pointer;
+    background: var(--label_icon);
+    margin: .5em;
+    padding: 20px;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    position: absolute;
+    top: 0%;
+    right: 0%;
+}
+
+.main_title {
+    display: block;
+    font-size: 2.5em;
+    text-align: center;
+    margin: 1em 0;
+    font-family: var(--font) ;
+    color: var(--text_color);
+}
+
+.container_flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1em;
+    margin: 0 1em;
+    gap: 1em;
+}
+
+.container_flex .notebook {
+    width: 40%;
+    border: 2px solid var(--border);
+    border-radius: 15px;
+    box-shadow: 7px 7px 10px 0 var(--box_shadow);
+}
+
+.container_flex .form {
+    width: 100%;
+    display:flex;
+    flex-direction: column;
+    gap: .5em;
+}
+
+.container_flex .form .label_input_text {
+    font-size: 1.4em;
+    font-family: var(--font);
+    color: var(--text_color);
+}
+
+.container_flex .form .input_text {
+    width: auto; 
+    padding: .8em .8em;
+    font-size: 1em;
+    border: 2px solid var(--border);
+    border-radius: 20px;
+    box-shadow: 3px 4px 8px 0 var(--box_shadow);
+    font-family: var(--font);
+    color: var(--text_color);
+    background: var(--text_input_background);
+}
+
+.container_flex .form .input_text::placeholder{
+    color: var(--place_holder_color);
+}
+
+.container_flex .form .input_text:focus{
+    outline: 0;
+    border: 2px solid goldenrod;
+}
+
+.container_flex .form .add{
+    width: 100%;
+    margin: 1.4em auto;
+    padding: .6em 0;
+    font-size: 1.2em;
+    border: 2px solid var(--border);
+    border-radius: 20px;
+    box-shadow: 3px 4px 8px 0 var(--box_shadow);
+    background-color: var(--add_input_background);
+    font-family: var(--font);
+    color: var(--text_color);
+}
+
+.container_flex .form .add:hover{
+    cursor: pointer;
+    background-color: var(--add_input_background_hover);
+    transition: all .2s;
+}
+
+.list {
+    width: 90%;
+    text-align: center;
+    margin: 0 auto;
+    list-style: none;
+    font-family: var(--font) 
+}
+
+.list .item {
+    width: auto;
+    margin: 1em 5%;
+    padding: .2em .5em ;
+    background: var(--item_color);
+    border-radius: 20px;
+    font-size: 1.1em;
+    box-shadow: 7px 7px 10px 0px var(--box_shadow); 
+    color: var(--text_color);
+}
+
+.list .item strong {
+    width: 50%;
+    display: block;
+    border-radius: 20px;
+    background: var(--item_strong_color);
+    font-size: .8em;
+    margin: .5em auto;
+    padding: .3em;
+    font-weight: 600;
+}
+
+.delete_button{
+    margin: 0 .7em 0 .7em;
+    padding: .4em;
+    font-size: .9em;
+    cursor: pointer;
+    border-radius: 20px;
+    border-style: none;
+    background-color: transparent;
+}
+
+#checkbox {
+    display: none;
+    
+}
+
+.label_checkbox{
+    cursor: pointer;
+    margin: 0 .3em;
+    padding: .28em;
+    border-radius: 20px;
+    border-style: none;
+    font-size: 1em;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.list .checked_item {
+    width: auto;
+    margin: 1em 5%;
+    padding: .2em .5em;    
+    background: #5f985e;
+    border-radius: 20px;
+    font-size: 1.1em;
+    box-shadow: 7px 7px 10px 0px var(--box_shadow); 
+    color: darkgreen;
+    
+}
+
+.list .checked_item strong {
+    width: 50%;
+    display: block;
+    border-radius: 20px;
+    background: #487047;
+    font-size: .8em;
+    margin: .5em auto;
+    padding: .3em;
+    font-weight: 600;   
+}
+
+.delete_button:hover, .label_checkbox:hover{
+    background-color: var(--button_hover);
+    border-radius: 20px;
+    transition: all 1s;
+}
+
+.deleted_item {
+    opacity: 0;
+    transition: .8s;
+}
+
+.teste{
+    font-style: italic;
+    
+}
+
+@media (min-width: 600px) {
+    .container_flex .notebook {
+        width: 30%;
+    }
+
+    .change_theme{
+        padding: 25px;
+        top: 1%;
+        right: 1%;
+    }
+
+    .list .item{
+        font-size: 1.2em;
+    }
+
+    .list .check_item {
+        font-size: 1.2em;
+    }
+}
+
+@media (min-width: 1100px) {    
+    .container_flex .notebook {
+     width: 30%;
+     max-width: 180px ;
+    }
+
+    .change_theme{
+        padding: 28px;
+        top: 2%;
+        right: 2%;
+    }
+
+    .container_flex{
+        width: 70%;
+        margin: 0 auto;
+        flex-direction: row;
+        gap: 3em;
+    }
+
+    .list .item {
+        margin: 1em 25%;
+        font-size: 1.5em;
+    }
+
+    .list .checked_item {
+        margin: 1em 25%;
+        font-size: 1.5em;
+    }
+
+    .delete_button:hover, .label_checkbox:hover{
+        border-radius: 30px;
+    }
+}
