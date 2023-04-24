@@ -67,8 +67,8 @@ function getThemeFromLocalStorage () {
 
 function isThemeEqual (firstTheme, secondTheme) {
     for (let prop in firstTheme) {
-        if(firstTheme[prop] = secondTheme[prop] ) return true;
+        if(firstTheme[prop] != secondTheme[prop] ) return false;
     };
 
-    return false;
+    return true;
 }
