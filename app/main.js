@@ -1,4 +1,5 @@
 let listOfItems = [];
+let itemToEdit;
 
 const form = document.getElementById('form');
 const retriveListOfItems = localStorage.getItem('tasks');
@@ -48,19 +49,32 @@ function showItems() {
         if(item.isChecked){
             
             ul.innerHTML += `
-                <li class="checked_item" data-value="${index}">${item.task}<strong>${item.time}</strong>
-                    <button class="delete_button">🗑️</button>
-                    <label class="label_checkbox" for="checkbox">\u2705</label>
-                    <input type="checkbox" id="checkbox"></input>
+                <li class="checked_item" data-value="${index}">
+                    <div class="inputs_flex">
+                        <input type="text" class="checked-input-item" value="${item.task}" disabled>
+                        <strong><input type="text" class="checked-input-item-strong" value="${item.time}" disabled></strong>
+                    </div>                  
+                    <div class="flex_buttons">
+                        <button class="delete_button">🗑️</button>
+                        <label class="label_checkbox" for="checkbox">\u2705</label>
+                        <input type="checkbox" id="checkbox"></input>
+                    </div>
                 </li>`;
-                    
+
         } else {
 
             ul.innerHTML += `
-                <li class="item" data-value="${index}">${item.task}<strong>${item.time}</strong>
-                    <button class="delete_button">🗑️</button>
-                    <label class="label_checkbox" for="checkbox">\u2705</label>
-                    <input type="checkbox" id="checkbox"></input>
+                <li class="item" data-value="${index}">
+                    <div class="inputs_flex">
+                        <input type="text" class="input-item" value="${item.task}" ${index !== Number(itemToEdit) ? 'disabled' : ''}>
+                        <strong><input type="text" class="input-item-strong" value="${item.time}" ${index !== Number(itemToEdit) ? 'disabled' : ''}></strong>
+                    </div>
+                    <div class="flex_buttons">
+                        <button class="delete_button buttons">🗑️</button>
+                        ${index === Number(itemToEdit) ? '<button class="save_button" onclick="saveEdition()">💾</button>' : '<button class="edit_button ">&#x1F58A</button>'}                        
+                        <label class="label_checkbox" for="checkbox">\u2705</label>
+                        <input type="checkbox" id="checkbox"></input>                        
+                    </div>
                 </li>`;
 
         }
@@ -71,7 +85,7 @@ function showItems() {
 
         label.addEventListener('click', (e) => {
 
-            const indexCheckedItem = e.target.parentElement.getAttribute('data-value');
+            const indexCheckedItem = e.target.parentElement.parentElement.getAttribute('data-value');
 
             if(listOfItems[indexCheckedItem].isChecked) {
                 listOfItems[indexCheckedItem].isChecked = false;
@@ -88,15 +102,33 @@ function showItems() {
     deleteButtons.forEach(button => {   
 
         button.addEventListener('click', (e) => {
-
-            const itemToDelete = e.target.parentElement.getAttribute('data-value');
+            
+            const itemToDelete = e.target.parentElement.parentElement.getAttribute('data-value');
             listOfItems.splice(itemToDelete, 1);
+            
             showItems();
         })
     });
 
-    localStorage.setItem('tasks', JSON.stringify(listOfItems))
+    const editButton = document.querySelectorAll('.edit_button');
+    editButton.forEach(button => {
 
+        button.addEventListener('click', (e) => {
+            itemToEdit = e.target.parentElement.parentElement.getAttribute('data-value');
+            showItems();            
+        })  
+    })
+
+    localStorage.setItem('tasks', JSON.stringify(listOfItems))
+}
+
+function saveEdition() {
+    const editedItem = document.querySelector(`[data-value="${itemToEdit}"] input[type="text"]`);
+    const editedItemStrong = document.querySelector(`[data-value="${itemToEdit}"] strong`).firstChild;
+    listOfItems[itemToEdit].task = editedItem.value;
+    listOfItems[itemToEdit].time = editedItemStrong.value
+    itemToEdit = -1;
+    showItems();
 }
 
 
