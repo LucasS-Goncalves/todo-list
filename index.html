@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" type="image/png" href="./img/notebook.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap" rel="stylesheet">
+    <title>To Do List</title>    
+</head>
+<body>
+    <header>
+        <input type="checkbox" id="btn">
+        <label for="btn" class="change_theme"></label>
+        <h1 class="main_title">To Do List</h1>
+    </header>
+    <main> 
+        <section class="container_flex">
+                    <img class="notebook" src="img/notebook.png">               
+                    <form action="" class="form" id="form">
+                        <label for="task" class="label_input_text">Task</label>
+                        <input type="text" name="item" id="task" class="input_text" placeholder="Ex: Homework" required>
+                        <label for="time" class="label_input_text">Time</label>
+                        <input type="text" name="time" id="time" class="input_text" placeholder="Ex: 2 pm">
+                        <input type="submit" value="Add" id="submit" class="add">
+                    </form> 
+        </section>
+        <ul class="list" id="list">      
+        </ul>  
+    </main>
+    <script src="./app/main.js"></script>
+    <script src="app/darkMode.js"></script>
+</body>
+</html>
