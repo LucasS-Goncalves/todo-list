@@ -14,6 +14,8 @@
     --box_shadow: #9c9393;
     --border: #000000;
     --button_hover: #cecdcd;
+    --edit_button: #000000;
+    --input-item-focus: #141313;
     --item_color: linear-gradient(#dbdbdb, #ececec);
     --item_strong_color: linear-gradient(#d6d6d6, #bbbbbb);
     --label_icon: url("https://cdn-icons-png.flaticon.com/512/46/46181.png?w=740&t=st=1678305581~exp=1678306181~hmac=f4fe102ffc733a492708d90a6f38c3cfe44b915bd9c654c1b027955b26de0d20");
@@ -29,6 +31,8 @@
     --box_shadow: #000000;
     --border: #000000;
     --button_hover: #141313;
+    --edit_button: #ffffff;
+    --input-item-focus: yellow;
     --item_color: linear-gradient(#1f1f1f, #2e2e2e);
     --item_strong_color: linear-gradient(#2b2b2b, #444444);
     --label_icon: url("https://icons.iconarchive.com/icons/paomedia/small-n-flat/512/light-bulb-icon.png");
@@ -146,27 +150,103 @@ body{
 
 .list .item {
     width: 75%;
-    padding: .3em .5em ;
+    padding: .6em .5em ;
     background: var(--item_color);
     border-radius: 20px;
-    font-size: 1.1em;
     box-shadow: 7px 7px 10px 0px var(--box_shadow); 
-    color: var(--text_color);
+    
 }
 
 .list .item strong {
-    width: 50%;
-    display: block;
+    width: 40%;
     border-radius: 20px;
     background: var(--item_strong_color);
-    font-size: .8em;
     margin: .3em auto;
-    padding: .3em;
+    padding: .1em .3em;
+}
+
+.list .checked_item {
+    width: 75%;
+    padding: .6em .5em;    
+    background: #5f985e;
+    border-radius: 20px;
+    box-shadow: 7px 7px 10px 0px var(--box_shadow); 
+    color: darkgreen;    
+}
+
+.list .checked_item strong {
+    width: 40%;
+    border-radius: 20px;
+    background: #487047;
+    margin: .3em auto;
+    padding: .1em .3em;  
+}
+
+.inputs_flex{
+    display: flex;
+    flex-direction: column;
+}
+
+.input-item{
+    color: var(--text_color);
+    background-color: transparent;
+    border: none;
+    font-size:  1.1em;
+    font-family: var(--font);   
+    padding: 0 .3em;
+    text-align: center;
+}
+
+.input-item-strong{
+    color: var(--text_color);
+    width: 90%;
+    background-color: transparent;
+    border: none;
+    font-size: .8em;
+    font-weight: 600;
+    font-family: var(--font);
+    padding: 0 .3em;
+    text-align: center;
+}
+
+.input-item:focus, .input-item-strong:focus{
+    outline:none;
+    color: rgb(90, 90, 90);
+    border-radius: 15px;
+}
+
+
+.checked-input-item{
+    color: darkgreen;
+    background-color: transparent;
+    border: none;
+    font-size:  1.1em;
+    font-family: var(--font);   
+    padding: 0 .3em;
+    text-align: center;
+}
+
+.checked-input-item-strong{
+    color: darkgreen;
+    width: 90%;
+    background-color: transparent;
+    border: none;
+    font-size: .8em;
+    font-weight: 600;
+    font-family: var(--font);
+    padding: 0 .3em;
+    text-align: center;
+}
+
+.flex_buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    font-size: 22px;
 }
 
 .delete_button{
-    margin: 0 .7em 0 .7em;
-    padding: .4em;
     font-size: .9em;
     cursor: pointer;
     border-radius: 20px;
@@ -175,14 +255,13 @@ body{
 }
 
 #checkbox {
-    display: none;
-    
+    display: none;   
 }
 
 .label_checkbox{
     cursor: pointer;
-    margin: 0 .3em;
-    padding: .28em;
+    /* margin: 0 .3em; */
+    padding: .28em 0;
     border-radius: 20px;
     border-style: none;
     font-size: 1em;
@@ -190,36 +269,25 @@ body{
     background-color: transparent;
 }
 
-.list .checked_item {
-    width: 75%;
-    padding: .3em .5em;    
-    background: #5f985e;
-    border-radius: 20px;
-    font-size: 1.1em;
-    box-shadow: 7px 7px 10px 0px var(--box_shadow); 
-    color: darkgreen;
-    
+.edit_button{
+    color: var(--edit_button);
+    font-weight: 600;
+    font-size: 22px;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
 }
 
-.list .checked_item strong {
-    width: 50%;
-    display: block;
-    border-radius: 20px;
-    background: #487047;
-    font-size: .8em;
-    margin: .3em auto;
-    padding: .3em;  
+.save_button{
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    font-size: 22px;
 }
 
-.delete_button:hover, .label_checkbox:hover{
-    background-color: var(--button_hover);
-    border-radius: 20px;
-    transition: all 1s;
-}
-
-.deleted_item {
-    opacity: 0;
-    transition: .8s;
+.delete_button:hover, .label_checkbox:hover, .edit_button:hover, .save_button:hover{
+    translate: 0 -6px;
+    transition: all .7s;
 }
 
 @media (min-width: 576px) {
@@ -241,13 +309,16 @@ body{
         width: 65%;
     }
 
-    .list .item{
+    .list .item, .list .checked_item{
         width: 70%;
+    }
+
+    .input-item, .checked-input-item {
         font-size: 1.2em;
     }
 
-    .list .check_item {
-        font-size: 1.2em;
+    .input-item-strong, .checked-input-item-strong{
+        font-size: .9em;
     }
 }
 
@@ -270,13 +341,17 @@ body{
         width: 60%;
     }
 
-    .list .item{
-        font-size: 1.2em;
+    .list .item, .list .checked_item{
+        width: 65%;
     }
 
-    .list .check_item {
-        font-size: 1.2em;
-    } 
+    .input-item, .checked-input-item {
+        font-size: 1.3em;
+    }
+
+    .input-item-strong, .checked-input-item-strong{
+        font-size: 1em;
+    }
 }
 
 @media (min-width: 992px) {
@@ -294,20 +369,22 @@ body{
         width: 55%;
     }
 
-    .list .item{
-        font-size: 1.2em;
-        width: 55%;
+    .list .item, .list .checked_item{
+        width: 50%;
     }
 
-    .list .check_item {
-        font-size: 1.2em;
-    } 
+    .input-item, .checked-input-item {
+        font-size: 1.4em;
+    }
+
+    .input-item-strong, .checked-input-item-strong{
+        font-size: 1.1em;
+    }
 }
 
 @media (min-width: 1200px) {    
     .container_flex .notebook {
      width: 190px;
-
     }
 
     .change_theme{
@@ -329,17 +406,21 @@ body{
         width: 60%;
     }
 
-    .list .item {
+    .list .item, .list .checked_item {
         width: 40%;
+    }
+
+    .input-item, .checked-input-item {
         font-size: 1.5em;
     }
 
-    .list .checked_item {
-        width: 40%;
-        font-size: 1.5em;
+    .input-item-strong, .checked-input-item-strong{
+        font-size: 1.2em;
     }
 
     .delete_button:hover, .label_checkbox:hover{
         border-radius: 30px;
     }
+
+    
 }
